@@ -19,12 +19,23 @@ variable "database_instance_name" {
   type        = string
 }
 
+variable "database_instance_ip" {
+  description = "IP address of the database instance"
+  type        = string
+}
+
 variable "database_name" {
   description = "Name of the database to be created"
   type        = string
 }
 
-variable "database_user" {
+variable "database_username" {
   description = "Name of the database user to be created"
   type        = string
+}
+
+variable "store_credentials_in_secret_manager" {
+  description = "Whether to store the credentials into GCP Secret Manager"
+  type        = bool
+  default     = false
 }

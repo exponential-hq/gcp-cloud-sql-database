@@ -6,6 +6,6 @@ output "database_name" {
   value = var.database_name
 }
 
-output "database_user" {
-  value = var.database_user
+output "database_username" {
+  value = var.database_username
 }
