@@ -1,3 +1,8 @@
+resource "google_project_service" "secretmanager_api" {
+  service            = "secretmanager.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_secret_manager_secret" "key" {
   count = var.store_credentials_in_secret_manager ? 1 : 0
 
@@ -6,6 +11,7 @@ resource "google_secret_manager_secret" "key" {
   replication {
     automatic = true
   }
+  depends_on = [google_project_service.secretmanager_api]
 }
 
 resource "google_secret_manager_secret_version" "key" {
@@ -13,4 +19,5 @@ resource "google_secret_manager_secret_version" "key" {
 
   secret      = google_secret_manager_secret.key[0].id
   secret_data = random_password.password.result
+  depends_on  = [google_project_service.secretmanager_api]
 }

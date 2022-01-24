@@ -39,3 +39,8 @@ variable "store_credentials_in_secret_manager" {
   type        = bool
   default     = false
 }
+
+variable "terraform_service_account" {
+  description = "Name of the service account to assume to run Terraform"
+  type        = string
+}
