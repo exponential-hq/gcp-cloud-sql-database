@@ -19,11 +19,6 @@ variable "database_instance_name" {
   type        = string
 }
 
-variable "database_instance_ip" {
-  description = "IP address of the database instance"
-  type        = string
-}
-
 variable "database_name" {
   description = "Name of the database to be created"
   type        = string
