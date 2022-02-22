@@ -1,7 +1,6 @@
 resource "random_password" "password" {
   length           = 30
-  special          = true
-  override_special = "_%@"
+  special          = false
 }
 
 resource "google_sql_user" "user" {
