@@ -29,6 +29,12 @@ variable "database_username" {
   type        = string
 }
 
+variable "additional_iam_users" {
+  description = "List of IAM users to allow permission to the database"
+  type        = list(any)
+  default     = []
+}
+
 variable "store_credentials_in_secret_manager" {
   description = "Whether to store the credentials into GCP Secret Manager"
   type        = bool

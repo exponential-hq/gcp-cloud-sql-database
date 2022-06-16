@@ -24,3 +24,16 @@ provider "gcp" {
   access_token    = data.google_service_account_access_token.default.access_token
   request_timeout = "60s"
 }
+
+data "google_sql_database_instance" "database_instance" {
+  name = var.database_instance_name
+}
+
+provider "postgresql" {
+  scheme   = "postgres"
+  host     = data.google_sql_database_instance.database_instance.first_ip_address
+  port     = 5432
+  username = "postgres"
+  password = data.google_secret_manager_secret_version.postgres-password.secret_data
+  sslmode  = "disable"
+}

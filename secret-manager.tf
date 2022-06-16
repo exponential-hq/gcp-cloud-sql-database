@@ -21,3 +21,8 @@ resource "google_secret_manager_secret_version" "key" {
   secret_data = random_password.password.result
   depends_on  = [google_project_service.secretmanager_api]
 }
+
+
+data "google_secret_manager_secret_version" "postgres-password" {
+  secret = "database--${var.database_instance_name}--postgres--password"
+}
