@@ -11,12 +11,24 @@ variable "gcp_region" {
 variable "database_auth_method" {
   description = "Auth mehod to set up for the user (BUILT_IN | CLOUD_IAM_USER | CLOUD_IAM_SERVICE_ACCOUNT)"
   type        = string
-  default     = "BUILT_IN"
+  default     = "CLOUD_IAM_SERVICE_ACCOUNT"
 }
 
 variable "database_instance_name" {
   description = "Name of the database instance on which to provision resources"
   type        = string
+}
+
+variable "create_database" {
+  type        = bool
+  description = "Create a database"
+  default     = true
+}
+
+variable "user_grants" {
+  type        = list(any)
+  default     = ["ALL"]
+  description = "Grants to assign to the user"
 }
 
 variable "database_name" {
