@@ -39,3 +39,9 @@ resource "postgresql_grant" "grant_iam_user" {
     google_sql_database.database,
   ]
 }
+
+resource "postgresql_grant_role" "grant_iam_user_role" {
+  for_each   = toset(var.grant_roles)
+  role       = local.iam_username
+  grant_role = each.key
+}

@@ -47,6 +47,12 @@ variable "additional_iam_users" {
   default     = []
 }
 
+variable "grant_roles" {
+  description = "Roles to grant to the user"
+  type        = list(string)
+  default     = ["cloudsqlsuperuser"]
+}
+
 variable "store_credentials_in_secret_manager" {
   description = "Whether to store the credentials into GCP Secret Manager"
   type        = bool
