@@ -41,7 +41,7 @@ resource "postgresql_grant" "grant_iam_user" {
 }
 
 resource "postgresql_grant_role" "grant_iam_user_role" {
-  for_each   = toset(var.grant_roles)
+  for_each = { for k in toset(var.grant_roles) : k => k if var.database_auth_method == "CLOUD_IAM_SERVICE_ACCOUNT" }
   role       = local.iam_username
   grant_role = each.key
 }
