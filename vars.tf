@@ -26,8 +26,16 @@ variable "create_database" {
 }
 
 variable "user_grants" {
-  type        = list(any)
-  default     = ["ALL"]
+  type = list(any)
+  default = [
+    "DELETE",
+    "INSERT",
+    "REFERENCES",
+    "SELECT",
+    "TRIGGER",
+    "TRUNCATE",
+    "UPDATE"
+  ]
   description = "Grants to assign to the user"
 }
 
